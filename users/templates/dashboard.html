@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            position: relative; /* Needed for profile picture positioning */
+        }
+        .profile-pic {
+            position: absolute;
+            top: 144px; /* Adjusted to fit well within the container */
+            right: 39px; /* Adjusted for better spacing */
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #007bff;
+            transition: transform 0.3s ease, z-index 0s; /* Smooth scaling transition */
+            cursor: pointer; /* Change cursor to indicate it's clickable */
+        }
+        .profile-pic:hover {
+            transform: scale(1.2); /* Enlarge image on hover */
+            z-index: 10; /* Ensure it appears above other content */
+        }
+        h2 {
+            color: #333;
+            text-align: center;
+        }
+        p {
+            font-size: 16px;
+            color: #555;
+        }
+        .info {
+            margin-bottom: 15px;
+            padding: 10px;
+            border-radius: 4px;
+            background-color: #e9ecef;
+        }
+        .marquee {
+            width: calc(100% - 130px); /* Adjusted to fit with profile picture */
+            overflow: hidden;
+            white-space: nowrap;
+            box-sizing: border-box;
+            background: #007bff;
+            color: #fff;
+            padding: 10px 0;
+            padding-left: 60px;
+            margin-bottom: 20px;
+            animation: marquee 15s linear infinite;
+            display: flex;
+            align-items: center; /* Vertically center the text */
+        }
+        @keyframes marquee {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Display profile picture -->
+        {% if user.profile_picture %}
+            <img src="{{ user.profile_picture.url }}" alt="Profile Picture" class="profile-pic">
+        {% else %}
+            <!-- Optionally, you could include a default image if profile picture is not available -->
+            <img src="/path/to/default-image.jpg" alt="Default Profile Picture" class="profile-pic">
+        {% endif %}
+        <div class="marquee">🚨Welcome to your Dashboard! Here’s a summary of your details.🚨</div>
+        <h2>Dashboard</h2>
+        <div class="info">
+            <p><strong>Username:</strong> {{ user.username }}</p>
+            <p><strong>First Name:</strong> {{ user.first_name }}</p>
+            <p><strong>Last Name:</strong> {{ user.last_name }}</p>
+            <p><strong>Email:</strong> {{ user.email }}</p>
+            <p><strong>Address:</strong> 
+                {% if user.address_line1 %}
+                    {{ user.address_line1 }}, 
+                {% else %}
+                    Address line 1 not available,
+                {% endif %}
+                {% if user.city %}
+                    {{ user.city }}, 
+                {% else %}
+                    City not available,
+                {% endif %}
+                {% if user.state %}
+                    {{ user.state }}, 
+                {% else %}
+                    State not available,
+                {% endif %}
+                {% if user.pincode %}
+                    {{ user.pincode }}
+                {% else %}
+                    Pincode not available
+                {% endif %}
+            </p>
+            <p><strong>User Type:</strong> 
+                {% if user.user_type == 'patient' %}
+                    Patient
+                {% elif user.user_type == 'doctor' %}
+                    Doctor
+                {% else %}
+                    User type not available
+                {% endif %}
+            </p>
+        </div>
+    </div>
+</body>
+</html>
