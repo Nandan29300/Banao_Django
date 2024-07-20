@@ -14,27 +14,29 @@ Create an application to enable signup and login for different types of users. O
 1.) Types of Users:
 
 🧑‍⚕️ Patient
+
 👨‍⚕️ Doctor
 
 
 2.) Signup Form:
 
 The signup form includes the following fields:
-🧑‍🔬 First Name
 
-👩‍🔬 Last Name
-
-📸 Profile Picture
-
-👤 Username
-
-📧 Email ID
-
-🔐 Password
-
-🔐 Confirm Password
-
-🏠 Address (line1, city, state, pincode)
+  🧑‍🔬 First Name
+  
+  👩‍🔬 Last Name
+  
+  📸 Profile Picture
+  
+  👤 Username
+  
+  📧 Email ID
+  
+  🔐 Password
+  
+  🔐 Confirm Password
+  
+  🏠 Address (line1, city, state, pincode)
 
 
 
