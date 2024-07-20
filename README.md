@@ -21,13 +21,21 @@ Create an application to enable signup and login for different types of users. O
 
 The signup form includes the following fields:
 🧑‍🔬 First Name
+
 👩‍🔬 Last Name
+
 📸 Profile Picture
+
 👤 Username
+
 📧 Email ID
+
 🔐 Password
+
 🔐 Confirm Password
+
 🏠 Address (line1, city, state, pincode)
+
 
 
 3.) Password Confirmation:
