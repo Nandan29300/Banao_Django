@@ -42,10 +42,14 @@ The signup form includes the following fields:
 
 A check ensures that the Password and Confirm Password fields match.
 
-### Signup Form
+
+
+# Signup Form:
 ![Screenshot 2024-07-20 202728](https://github.com/user-attachments/assets/f9fa22a1-c4ef-4a32-9686-c9b41164c3d3)
 
-### Login Form
+
+
+# Login Form:
 ![Screenshot 2024-07-20 202744](https://github.com/user-attachments/assets/10efbf22-ed77-4510-a192-3dc66d7b5cda)
 
 
