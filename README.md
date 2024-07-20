@@ -86,7 +86,7 @@ To run this project, follow these steps:
 
 4. Access the application in your web browser at `http://localhost:8000`.
 
-5. After accessing 'http://localhost:8000' you can further go as per your changes made here's 'https://localhost:8000/users/signup/'. 
+5. After accessing http://localhost:8000 you can further go as per your changes made in the urls.py 'https://localhost:8000/users/signup/'. 
 
 
 ### Thank You, PythonAnywhere!
