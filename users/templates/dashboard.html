@@ -16,23 +16,23 @@
             background-color: #fff;
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            position: relative; /* Needed for profile picture positioning */
+            position: relative;
         }
         .profile-pic {
             position: absolute;
-            top: 144px; /* Adjusted to fit well within the container */
-            right: 39px; /* Adjusted for better spacing */
+            top: 144px;
+            right: 39px;
             width: 100px;
             height: 100px;
             border-radius: 50%;
             object-fit: cover;
             border: 3px solid #007bff;
-            transition: transform 0.3s ease, z-index 0s; /* Smooth scaling transition */
-            cursor: pointer; /* Change cursor to indicate it's clickable */
+            transition: transform 0.3s ease, z-index 0s;
+            cursor: pointer;
         }
         .profile-pic:hover {
-            transform: scale(1.2); /* Enlarge image on hover */
-            z-index: 10; /* Ensure it appears above other content */
+            transform: scale(1.2);
+            z-index: 10;
         }
         h2 {
             color: #333;
@@ -49,7 +49,7 @@
             background-color: #e9ecef;
         }
         .marquee {
-            width: calc(100% - 130px); /* Adjusted to fit with profile picture */
+            width: calc(100% - 130px);
             overflow: hidden;
             white-space: nowrap;
             box-sizing: border-box;
@@ -60,62 +60,140 @@
             margin-bottom: 20px;
             animation: marquee 15s linear infinite;
             display: flex;
-            align-items: center; /* Vertically center the text */
+            align-items: center;
         }
         @keyframes marquee {
             0% { transform: translateX(100%); }
             100% { transform: translateX(-100%); }
         }
+        .buttons {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .buttons a {
+            display: inline-block;
+            margin: 10px;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+        .buttons a:hover {
+            background-color: #0056b3;
+        }
     </style>
+    
 </head>
 <body>
     <div class="container">
-        <!-- Display profile picture -->
-        {% if user.profile_picture %}
-            <img src="{{ user.profile_picture.url }}" alt="Profile Picture" class="profile-pic">
+        {% if user.is_authenticated %}
+            {% if user.profile_picture %}
+                <img src="{{ user.profile_picture.url }}" alt="Profile Picture" class="profile-pic">
+            {% endif %}
+            <div class="marquee">🚨Welcome to your Dashboard! Here’s a summary of your details.🚨</div>
+            <h2>Dashboard</h2>
+            <div class="info">
+                <p class="summary"><strong>Username:</strong> {{ user.username }}</p>
+                <p class="summary"><strong>First Name:</strong> {{ user.first_name }}</p>
+                <p class="summary"><strong>Last Name:</strong> {{ user.last_name }}</p>
+                <p class="summary"><strong>Email:</strong> {{ user.email }}</p>
+                <p class="summary"><strong>Address:</strong> 
+                    {% if user.address_line1 %}
+                        {{ user.address_line1 }}, 
+                    {% else %}
+                        Address line 1 not available,
+                    {% endif %}
+                    {% if user.city %}
+                        {{ user.city }}, 
+                    {% else %}
+                        City not available,
+                    {% endif %}
+                    {% if user.state %}
+                        {{ user.state }}, 
+                    {% else %}
+                        State not available,
+                    {% endif %}
+                    {% if user.pincode %}
+                        {{ user.pincode }}
+                    {% else %}
+                        Pincode not available
+                    {% endif %}
+                </p>
+                <p class="summary"><strong>User Type:</strong> 
+                    {% if user.user_type == 'patient' %}
+                        Patient
+                    {% elif user.user_type == 'doctor' %}
+                        Doctor
+                    {% else %}
+                        User type not available
+                    {% endif %}
+                </p>
+            </div>
+            <div class="buttons">
+                {% if user.user_type == 'doctor' %}
+                    <a href="{% url 'create_blog' %}">Create New Blog Post</a>
+                    <a href="{% url 'view_blogs' %}">View My Blog Posts</a>
+                {% elif user.user_type == 'patient' %}
+                    <a href="{% url 'view_blogs' %}">View All Blog Posts</a>
+                {% endif %}
+                <a href="{% url 'logout' %}">Logout</a>
+            </div>
         {% else %}
-            <!-- Optionally, you could include a default image if profile picture is not available -->
-            <img src="/path/to/default-image.jpg" alt="Default Profile Picture" class="profile-pic">
+            <p>You need to be logged in to view this page. <a href="{% url 'login' %}">Login here</a>.</p>
         {% endif %}
-        <div class="marquee">🚨Welcome to your Dashboard! Here’s a summary of your details.🚨</div>
-        <h2>Dashboard</h2>
-        <div class="info">
-            <p><strong>Username:</strong> {{ user.username }}</p>
-            <p><strong>First Name:</strong> {{ user.first_name }}</p>
-            <p><strong>Last Name:</strong> {{ user.last_name }}</p>
-            <p><strong>Email:</strong> {{ user.email }}</p>
-            <p><strong>Address:</strong> 
-                {% if user.address_line1 %}
-                    {{ user.address_line1 }}, 
-                {% else %}
-                    Address line 1 not available,
-                {% endif %}
-                {% if user.city %}
-                    {{ user.city }}, 
-                {% else %}
-                    City not available,
-                {% endif %}
-                {% if user.state %}
-                    {{ user.state }}, 
-                {% else %}
-                    State not available,
-                {% endif %}
-                {% if user.pincode %}
-                    {{ user.pincode }}
-                {% else %}
-                    Pincode not available
-                {% endif %}
-            </p>
-            <p><strong>User Type:</strong> 
-                {% if user.user_type == 'patient' %}
-                    Patient
-                {% elif user.user_type == 'doctor' %}
-                    Doctor
-                {% else %}
-                    User type not available
-                {% endif %}
-            </p>
-        </div>
     </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Function to truncate text
+            function truncateText(selector, wordLimit) {
+                const elements = document.querySelectorAll(selector);
+                elements.forEach(element => {
+                    const words = element.textContent.trim().split(/\s+/);
+                    if (words.length > wordLimit) {
+                        const truncatedText = words.slice(0, wordLimit).join(' ') + '...';
+                        console.log(`Original text: ${element.textContent}`);
+                        console.log(`Truncated text: ${truncatedText}`);
+                        element.textContent = truncatedText;
+                    }
+                });
+            }
+
+            // Apply truncation to elements with class 'summary'
+            truncateText('.summary', 15);
+
+            // Additional JavaScript for hover and click effects
+            const container = document.querySelector('.container');
+            container.addEventListener('mouseover', function() {
+                container.style.backgroundColor = '#f0f8ff';
+            });
+            container.addEventListener('mouseout', function() {
+                container.style.backgroundColor = '#fff';
+            });
+
+            const profilePic = document.querySelector('.profile-pic');
+            if (profilePic) {
+                profilePic.addEventListener('click', function() {
+                    alert('Profile picture clicked!');
+                });
+            }
+
+            const buttons = document.querySelectorAll('.buttons a');
+            buttons.forEach(function(button) {
+                button.addEventListener('click', function(event) {
+                    event.preventDefault();
+                    const targetId = button.getAttribute('href').substring(1);
+                    const targetElement = document.getElementById(targetId);
+                    if (targetElement) {
+                        targetElement.scrollIntoView({ behavior: 'smooth' });
+                    } else {
+                        window.location.href = button.getAttribute('href');
+                    }
+                });
+            });
+        });
+    </script>
+
 </body>
 </html>
