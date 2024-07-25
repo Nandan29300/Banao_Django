@@ -77,7 +77,7 @@ A check ensures that the Password and Confirm Password fields match.
 
 
 # Functionalities of Doctor View Blog Post Page
-
+![Screenshot 2024-07-25 213618](https://github.com/user-attachments/assets/41da62d4-cf56-463b-aae0-fb28d70a6778)
 
 
 
