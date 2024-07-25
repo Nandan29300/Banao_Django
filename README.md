@@ -57,6 +57,10 @@ A check ensures that the Password and Confirm Password fields match.
 ![Screenshot 2024-07-20 202744](https://github.com/user-attachments/assets/10efbf22-ed77-4510-a192-3dc66d7b5cda)
 
 
+# Patient Viewing Blog Posts
+C:\Users\nanda\Pictures\Screenshots\Screenshot 2024-07-25 213420.png
+
+
 
 ## This project was successfully deployed on [PythonAnywhere](https://www.pythonanywhere.com/)! 🎉
 
