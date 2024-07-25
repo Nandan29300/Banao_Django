@@ -52,13 +52,34 @@ A check ensures that the Password and Confirm Password fields match.
 ![Screenshot 2024-07-20 202728](https://github.com/user-attachments/assets/f9fa22a1-c4ef-4a32-9686-c9b41164c3d3)
 
 
-
 # Login Form:
 ![Screenshot 2024-07-20 202744](https://github.com/user-attachments/assets/10efbf22-ed77-4510-a192-3dc66d7b5cda)
 
 
-# Patient Viewing Blog Posts
-C:\Users\nanda\Pictures\Screenshots\Screenshot 2024-07-25 213420.png
+# Patient Dashboard and Viewing Blog Posts
+![Screenshot 2024-07-25 213420](https://github.com/user-attachments/assets/d136edda-66ff-42c0-afe6-e0385463c839)
+
+
+# Sample Blog Post
+![Screenshot 2024-07-25 213451](https://github.com/user-attachments/assets/050283a3-8caf-4d42-a9cb-f6e901a1e316)
+
+
+# Functionalities of Patient View Blog Post Page
+![Screenshot 2024-07-25 213515](https://github.com/user-attachments/assets/5f6b71a0-eb2b-4484-857d-940c1a6c83a7)
+
+
+# Doctor Dashboard
+![Screenshot 2024-07-25 213543](https://github.com/user-attachments/assets/9dcacf28-6d26-4c02-828b-3e56f4851650)
+
+
+# Create Blog Option for Doctors
+![Screenshot 2024-07-25 213602](https://github.com/user-attachments/assets/a03e6a0c-64d4-4eef-9115-0a0997db0d71)
+
+
+# Functionalities of Doctor View Blog Post Page
+
+
+
 
 
 
